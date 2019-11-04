@@ -1,0 +1,6 @@
+/student-made-tests
+/code-generation-tests
+*.pdf
+*.class
+*.txt
+*.ci

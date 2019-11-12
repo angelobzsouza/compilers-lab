@@ -6,4 +6,5 @@ package ast;
 
 abstract public class Expr extends Statement {
     abstract public Type getType();
+    abstract public void genJava(PW pw);
 }

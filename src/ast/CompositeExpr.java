@@ -46,7 +46,14 @@ public class CompositeExpr extends Expr {
 		this.right = right;
 		this.op = op;
 	}
-	
+
+	public void genJava( PW pw ) {
+        pw.print("(");
+        left.genJava(pw);
+        pw.print(" " + op.toString() + " ");
+        right.genJava(pw);
+        pw.print(")");
+    }
 	Expr right;
 	Expr left;
 	Token op;

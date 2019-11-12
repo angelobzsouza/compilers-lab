@@ -5,4 +5,6 @@ Igor Inácio de Carvalho Silva RA: 725804
 package ast;
 
 abstract public class Statement {
+    abstract public void genJava (PW pw);
 }
+

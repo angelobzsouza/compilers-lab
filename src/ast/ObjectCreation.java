@@ -15,5 +15,7 @@ public class ObjectCreation extends Factor {
 		return type;
 	}
 
+	public void genJava(PW pw){};
+
 	private Type type;
 }

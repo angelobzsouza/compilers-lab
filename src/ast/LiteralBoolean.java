@@ -15,6 +15,8 @@ public class LiteralBoolean extends Expr {
         return Type.booleanType;
     }
 
+    public void genJava(PW pw){};
+
     public static LiteralBoolean True  = new LiteralBoolean(true);
     public static LiteralBoolean False = new LiteralBoolean(false);
 

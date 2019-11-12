@@ -20,6 +20,8 @@ public class BasicValue extends Factor {
 	public Type getType() {
 		return this.type;
 	}
+
+	public void genJava(PW pw){};
 	private Type type;
 	private Integer intValue;
 	private boolean boolValue;

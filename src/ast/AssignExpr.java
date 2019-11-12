@@ -10,6 +10,20 @@ public class AssignExpr extends Statement {
 		this.right = right;
 		this.left = left;
 	}	
+
+	public void genJava (PW pw){
+
+        pw.print("");
+        left.genJava(pw);
+        
+        if (right != null) {
+            pw.print(" = ");
+            right.genJava(pw);
+        }
+        
+        pw.println(";");
+    }
+
 	private Expr right;
 	private Expr left;
 }

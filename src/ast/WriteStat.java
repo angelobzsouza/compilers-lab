@@ -11,6 +11,12 @@ public class WriteStat extends Statement {
 		this.expr = expr;
 	}
 
+	public void genJava(PW pw){
+		pw.print("System.out.println(");
+		expr.genJava(pw);
+		pw.println(");");
+	};
+
 	private Expr expr;
 
 }

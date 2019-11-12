@@ -23,6 +23,7 @@ public class CompositeSignalFactor extends SignalFactor {
 		} 
 		return Type.undefinedType;
 	}
+	public void genJava(PW pw){};
 	Token op;
 	Expr right;
 }

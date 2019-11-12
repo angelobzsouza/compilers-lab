@@ -11,4 +11,5 @@ public class NullExpr extends Factor {
       //to do
       return null;
    }
+   public void genJava(PW pw){};
 }

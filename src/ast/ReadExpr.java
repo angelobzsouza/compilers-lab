@@ -13,6 +13,10 @@ public class ReadExpr extends Factor{
 
 		return this.readType;
 	}
+
+	public void genJava(PW pw){
+		//scanner??
+	};
 	
 	private Type readType;
 }

@@ -10,6 +10,7 @@ public class AssertStat extends Statement {
 		this.expr = expr;
 		this.string = string;
 	}
+	public void genJava(PW pw){};
 	
 	private Expr expr;
 	private String string;

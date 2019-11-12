@@ -11,6 +11,23 @@ public class WhileStat extends Statement {
 		this.expr = expr;
 		this.statList = statList;
 	}
+
+	public void genJava(PW pw){
+ 		pw.print("while (");
+        
+        expr.genJava(pw);
+        
+        pw.println("){");
+        pw.add();
+        
+        statList.stream().forEach((stat) -> {
+            stat.genJava(pw);
+        });
+        
+        pw.sub();
+        pw.println("}");
+
+	};
 	
 	private Expr expr;
 	private ArrayList<Statement> statList;

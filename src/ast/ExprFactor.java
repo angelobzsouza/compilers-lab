@@ -13,6 +13,6 @@ public class ExprFactor extends Factor {
 	public Type getType() {
 		return expr.getType();
 	}
-
+	public void genJava(PW pw){};
 	private Expr expr;
 }

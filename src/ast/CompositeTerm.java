@@ -30,7 +30,7 @@ public class CompositeTerm extends Term {
 		
 		return Type.undefinedType;
 	} 
-
+	public void genJava(PW pw){};
 	Expr right; 
 	Expr left;
 	Token op;

@@ -13,5 +13,4 @@ public class TypeInt extends Type {
    public String getCname() {
       return "int";
    }
-
 }

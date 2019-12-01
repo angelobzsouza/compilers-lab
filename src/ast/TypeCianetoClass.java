@@ -4,7 +4,7 @@ Igor Inácio de Carvalho Silva RA: 725804
 */
 package ast;
 
-import java.util.ArrayList;
+import java.util.*;
 import lexer.Token;
 
 public class TypeCianetoClass extends Type {
@@ -85,6 +85,20 @@ public class TypeCianetoClass extends Type {
    public String getCname() {
       return getName();
    }
+
+	public void genJava (PW pw) {
+		pw.print("public");
+		if (this.isInheritable) {
+			pw.print("extends "+this.superclass+" ");
+		}
+		pw.println(" {");
+		pw.add();
+		memberList.stream().forEach((member) -> {
+				member.genJava(pw);
+		});
+		pw.sub();
+		pw.printlnIdent("}");
+	}
  
 	private String name;
 	private TypeCianetoClass superclass;

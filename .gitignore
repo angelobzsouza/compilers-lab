@@ -1,5 +1,6 @@
 /student-made-tests
 /code-generation-tests
+/generated-code
 *.pdf
 *.class
 *.txt

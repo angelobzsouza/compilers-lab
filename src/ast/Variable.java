@@ -31,6 +31,11 @@ public class Variable extends Member {
 		return this.qualifier;
 	}
 
+	@Override
+	public void genJava (PW pw) {
+		pw.printlnIdent(qualifier+" "+type+" "+name+";");
+	}
+
 	private Qualifier qualifier;
 	private String name;
 	private Type type;

@@ -34,6 +34,21 @@ public class MethodDec extends Member {
 	public Type getReturnType() {
 		return this.returnType;
 	}
+
+	@Override
+	public void genJava (PW pw) {
+		pw.printIdent(this.qualifier+" "+this.returnType+" "+this.id+" (");
+		paramList.stream().forEach((param) -> {
+				param.genJava(pw);
+		});
+		pw.printlnIdent(") {");
+		pw.add();
+		statList.stream().forEach((stat) -> {
+			stat.genJava(pw);
+		});
+		pw.sub();
+		pw.printlnIdent("}");
+	}
 	
 	private String id;
 	private ArrayList<Variable> paramList;

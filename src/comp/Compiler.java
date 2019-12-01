@@ -167,7 +167,6 @@ public class Compiler {
 		boolean isInheritable = false;
 		String superclassName = null;
 		TypeCianetoClass superclass = null;
-		
 		if ( lexer.token == Token.ID && lexer.getStringValue().equals("open") ) {
 			isInheritable = true;
 			next();
@@ -181,7 +180,6 @@ public class Compiler {
 			error("Identifier expected");
 		}
 		
-		//semantic
 		String className = lexer.getStringValue();
 		if (symbolTable.getInGlobal(className) != null) {
 			error("Class " + className + " has already been declared");
@@ -228,6 +226,7 @@ public class Compiler {
 			next();
 		}
 
+
 		TypeCianetoClass typeCianetoClass = new TypeCianetoClass(className, superclass, isInheritable); 
 		
 		currentClass = typeCianetoClass;
@@ -266,15 +265,17 @@ public class Compiler {
 		ArrayList<Variable> fieldList = null;
 		
 		while ( true ) {
-			
 			Qualifier q = qualifier();
-
 			if ( lexer.token == Token.VAR) {
 				fieldList = fieldDec(q);
 				ml.addAll(fieldList);
 			}
 			else if ( lexer.token == Token.FUNC ) {
-				ml.add(methodDec(q));
+				try {
+					ml.add(methodDec(q));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			else {
 				break;
@@ -444,12 +445,12 @@ public class Compiler {
 			break;
 		default:
 			if ( lexer.token == Token.OUT ) {
-				stmt = writeStat();
+				stmt = printStat();
 			} else  {
 				AssignExpr ae = assignExpr();
 			} 
 		}
-				
+		
 		if ( checkSemiColon ) {
 			if (lexer.token != Token.SEMICOLON) {
 				this.signalError.showError("';' expected", true);
@@ -646,24 +647,34 @@ public class Compiler {
 		return new IfStat(e, ifPart, elsePart);
 	}
 
-	private WriteStat writeStat() {
+	private PrintStat printStat() {
 		next();
-			check(Token.DOT, "a '.' was expected after 'Out'");
+		check(Token.DOT, "a '.' was expected after 'Out'");
 		next();
-		check(Token.IDCOLON, "'print:' or 'println:' was expected after 'Out.'");
-		String printName = lexer.getStringValue();
-		if(!printName.equals("print:") && !printName.equals("println:")) {
-			this.error("'print:' or 'println:' was expected after 'Out.'");
+		if(!lexer.getStringValue().equals("print:") && !lexer.getStringValue().equals("println:")) {
+			error("'print:' or 'println:' was expected after 'Out.'");
 		}
 		next();
-		Expr e = expr();
-		if (e == null) {
+
+		ArrayList<Expr> exprList = new ArrayList<>();
+		do {
+			if (lexer.token == Token.COMMA) {
+				next();
+			}
+
+			Expr e = expr();
+			if (e.getType() != Type.intType && e.getType() != Type.stringType) {
+				error("Attempt to print a boolean expression");
+			}
+
+			exprList.add(e);
+		} while (lexer.token == Token.COMMA);
+		
+		if (exprList.size() == 0) {
 			error("Write expression expected");
 		}
-		if (e.getType() != Type.intType && e.getType() != Type.stringType) {
-			error("Attempt to print a boolean expression");
-		}
-		return new WriteStat(e);
+		
+		return new PrintStat(exprList);
 	}
 
 	private Expr expr() {
@@ -693,7 +704,6 @@ public class Compiler {
 
 	private Expr simpleExpr() {
 		Expr left = sumSubExpr();
-		// Review
 		while (lexer.getStringValue() == "++") {
 			Token op = lexer.token;
 			next();	
@@ -983,8 +993,9 @@ public class Compiler {
 			next();
 			return new NilExpr(); 
 		} 
-		if (lexer.token == Token.LITERALINT || lexer.token == Token.LITERALSTRING || lexer.token == Token.TRUE || lexer.token == Token.FALSE)
+		if (lexer.token == Token.LITERALINT || lexer.token == Token.LITERALSTRING || lexer.token == Token.TRUE || lexer.token == Token.FALSE) {			
 			return basicValue();
+		}
 		
 		if (lexer.token == Token.SUPER) {
 			return superFunc();
@@ -1086,9 +1097,6 @@ public class Compiler {
 		}
 	}
 
-  public void p(String s){
-		System.out.println("test:"+s);
-	}
     // Code review
 	private Factor auxId() {
 		Type type = Type.undefinedType;
@@ -1408,6 +1416,13 @@ public class Compiler {
 		return paramList;
 	}
 
+  public void p(String s){
+		System.out.println(s);
+	}
+
+  public void pt(){
+		System.out.println(lexer.token);
+	}
 
 	private SymbolTable symbolTable;
 	private Lexer lexer;

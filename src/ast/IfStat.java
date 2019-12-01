@@ -14,11 +14,11 @@ public class IfStat extends Statement {
 	}
 
     public void genJava (PW pw) {
-        pw.print("if (");
+        pw.printIdent("if (");
         
         expr.genJava(pw);
         
-        pw.println("){");
+        pw.printlnIdent("){");
         pw.add();
         
         ifPart.stream().forEach((ifStat) -> {
@@ -26,10 +26,10 @@ public class IfStat extends Statement {
         });
         
         pw.sub();
-        pw.println("}");
+        pw.printlnIdent("}");
         
         if (!elsePart.isEmpty()) {
-            pw.println("else {");
+            pw.printlnIdent("else {");
             pw.add();
         
             elsePart.stream().forEach((elseStat) -> {
@@ -37,7 +37,7 @@ public class IfStat extends Statement {
             });
             
             pw.sub();
-            pw.println("}");
+            pw.printlnIdent("}");
         }
     }
 	

@@ -13,15 +13,15 @@ public class AssignExpr extends Statement {
 
 	public void genJava (PW pw){
 
-        pw.print("");
+        pw.printIdent("");
         left.genJava(pw);
         
         if (right != null) {
-            pw.print(" = ");
+            pw.printIdent(" = ");
             right.genJava(pw);
         }
         
-        pw.println(";");
+        pw.printlnIdent(";");
     }
 
 	private Expr right;

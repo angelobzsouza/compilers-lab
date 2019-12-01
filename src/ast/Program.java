@@ -21,7 +21,6 @@ public class Program {
         pw.printlnIdent("import java.util.*;");
         pw.printlnIdent("public class "+this.mainJavaClassName+" {");
         pw.add();
-				System.out.println(classList);
         classList.stream().forEach((currentClass) -> {
             currentClass.genJava(pw);
         });

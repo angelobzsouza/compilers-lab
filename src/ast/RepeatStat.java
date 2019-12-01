@@ -13,15 +13,15 @@ public class RepeatStat extends Statement {
 	}
 
 	public void genJava(PW pw){
-		pw.println("do {");
+		pw.printlnIdent("do {");
 
-        pw.add();
-        
-        statList.stream().forEach((stat) -> {
-            stat.genJava(pw);
-        });
+			pw.add();
+			
+			statList.stream().forEach((stat) -> {
+					stat.genJava(pw);
+			});
 
-        pw.println("} while(");
+		pw.printIdent("} while(");
 		
 		e.genJava(pw);
 

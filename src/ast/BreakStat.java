@@ -6,7 +6,7 @@ package ast;
 
 public class BreakStat extends Statement {
     public void genJava(PW pw){
-        pw.print("break;");
+        pw.printIdent("break;");
         pw.sub();
     };
 }

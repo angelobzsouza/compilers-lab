@@ -49,6 +49,8 @@ public enum Token {
     OVERRIDE("override"),
     OUT("Out"),
     PLUS("+"),
+    PRINT("print:"),
+    PRINTLN("println:"),
     PRIVATE("private"),
     PUBLIC("public"),
     READ("read"),

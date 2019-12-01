@@ -13,7 +13,7 @@ public class ReturnStat extends Statement {
 	}
 
 	public void genJava(PW pw){
-		pw.print("return ");
+		pw.printIdent("return ");
         pw.sub();
         expr.genJava(pw);
         pw.add();

@@ -1,6 +1,4 @@
-/student-made-tests
-/code-generation-tests
-/generated-code
+/generated-code/*.java
 *.pdf
 *.class
 *.txt

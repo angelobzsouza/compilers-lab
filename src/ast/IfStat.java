@@ -15,9 +15,7 @@ public class IfStat extends Statement {
 
     public void genJava (PW pw) {
         pw.printIdent("if (");
-        
         expr.genJava(pw);
-        
         pw.printlnIdent("){");
         pw.add();
         

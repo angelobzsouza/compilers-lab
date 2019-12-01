@@ -25,7 +25,11 @@ public class CompositeSimpleExpr extends SimpleExpr {
 		
 		return Type.undefinedType;
 	}
-	public void genJava(PW pw){};
+	public void genJava(PW pw){
+		left.genJava(pw);
+		pw.printIdent(op.toString());
+		right.genJava(pw);
+	};
 	Expr right; 
 	Expr left;
 	Token op;

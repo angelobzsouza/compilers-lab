@@ -13,7 +13,9 @@ public class PrimaryExpr extends Factor {
 	public Type getType() {
 		return this.type;
 	}
-	public void genJava(PW pw){};
+	public void genJava(PW pw){
+		pw.printIdent(type.getName());
+	};
 	
 	private Type type;
 }

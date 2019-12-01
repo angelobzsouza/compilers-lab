@@ -8,8 +8,11 @@ genJava:
 	java -classpath ./src comp.Comp ./code-generation-tests -genjava ./generated-code
 
 test:
-	java -classpath ./src comp.Comp ./
+	java -classpath ./src comp.Comp ./testAlone
+
+genTest:
+	java -classpath ./src comp.Comp ./testAlone -genjava ./generated-code
 
 clean:
-	rm src/ast/*.class src/comp/*.class src/lexer/*.class generated-code/*.java
+	rm src/ast/*.class src/comp/*.class src/lexer/*.class generated-code/*.java generated-code/*.class
 	

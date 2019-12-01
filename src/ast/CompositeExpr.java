@@ -17,16 +17,20 @@ public class CompositeExpr extends Expr {
 			}
 		}
 		else if (this.op == Token.EQ || this.op == Token.NEQ) {
+
+			if (leftType instanceof TypeNil && rightType instanceof TypeNil) {
+				return Type.undefinedType;
+			}
 			
 			if (leftType == rightType) {
 				return Type.booleanType;
 			}
 			
-			if ((leftType == Type.stringType && rightType == Type.nullType) ||(rightType == Type.stringType && leftType == Type.nullType)) {
+			if ((leftType == Type.stringType && rightType instanceof TypeNil) ||(rightType == Type.stringType && leftType instanceof TypeNil)) {
 				return Type.booleanType;
 			}
 			
-			if ((leftType instanceof TypeCianetoClass && rightType == Type.nullType) || (rightType instanceof TypeCianetoClass && leftType == Type.nullType)) {
+			if ((leftType instanceof TypeCianetoClass && rightType instanceof TypeNil) || (rightType instanceof TypeCianetoClass && leftType instanceof TypeNil)) {
 				return Type.booleanType;
 			}
 			

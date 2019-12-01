@@ -16,5 +16,4 @@ public class PrimaryExpr extends Factor {
 	public void genJava(PW pw){};
 	
 	private Type type;
-	private String statType;
 }

@@ -4,15 +4,17 @@ Igor Inácio de Carvalho Silva RA: 725804
 */
 package ast;
 
-public class TypeNull extends Type {
+public class TypeNil extends Type {
 
-	public TypeNull() {
-		super("NullType");
+	public TypeNil() {
+		super("nil");
 	}
 
-	@Override
 	public String getCname() {
-		return "NULL";
+		return "nil";
 	}
+	
+	@Override
+	public void genJava(PW pw){}
 
 }

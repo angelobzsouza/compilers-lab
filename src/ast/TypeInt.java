@@ -13,4 +13,7 @@ public class TypeInt extends Type {
    public String getCname() {
       return "int";
    }
+   
+   @Override
+   public void genJava(PW pw){}
 }

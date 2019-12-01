@@ -13,5 +13,7 @@ public class TypeString extends Type {
    public String getCname() {
       return "char *";
    }
+   @Override
+   public void genJava(PW pw){}
 
 }

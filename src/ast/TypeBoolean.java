@@ -14,5 +14,7 @@ public class TypeBoolean extends Type {
    public String getCname() {
       return "int";
    }
+   @Override
+   public void genJava(PW pw){}
 
 }

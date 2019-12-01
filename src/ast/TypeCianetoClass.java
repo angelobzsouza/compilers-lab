@@ -85,19 +85,16 @@ public class TypeCianetoClass extends Type {
    public String getCname() {
       return getName();
    }
-
+	@Override
 	public void genJava (PW pw) {
-		pw.print("public");
-		if (this.isInheritable) {
-			pw.print("extends "+this.superclass+" ");
-		}
-		pw.println(" {");
-		pw.add();
-		memberList.stream().forEach((member) -> {
-				member.genJava(pw);
-		});
-		pw.sub();
-		pw.printlnIdent("}");
+			pw.print("public class "+name+" ");
+			pw.println(" {");
+			pw.add();
+			memberList.stream().forEach((member) -> {
+					member.genJava(pw);
+			});
+			pw.sub();
+			pw.printlnIdent("}");
 	}
  
 	private String name;

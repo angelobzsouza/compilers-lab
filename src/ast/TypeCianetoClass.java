@@ -87,7 +87,7 @@ public class TypeCianetoClass extends Type {
    }
 	@Override
 	public void genJava (PW pw) {
-			pw.print("public class "+name+" ");
+			pw.printIdent("public static class "+name+" ");
 			pw.println(" {");
 			pw.add();
 			memberList.stream().forEach((member) -> {

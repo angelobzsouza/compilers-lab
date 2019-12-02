@@ -12,7 +12,7 @@ public class TypeBoolean extends Type {
 
    @Override
    public String getCname() {
-      return "int";
+      return "boolean";
    }
    @Override
    public void genJava(PW pw){}

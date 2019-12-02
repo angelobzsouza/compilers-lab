@@ -32,7 +32,7 @@ public class CompositeSumSubExpr extends SumSubExpr {
 	}
 	public void genJava(PW pw){
 		left.genJava(pw);
-		pw.printIdent(op.toString());
+		pw.print(op.toString());
 		right.genJava(pw);
 	};
 	Expr right;   

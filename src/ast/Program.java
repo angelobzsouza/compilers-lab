@@ -17,10 +17,34 @@ public class Program {
 		this.compilationErrorList = compilationErrorList;
 	}
 
+
+
 	public void genJava(PW pw) {
         pw.printlnIdent("import java.util.*;");
+
         pw.printlnIdent("public class "+this.mainJavaClassName+" {");
         pw.add();
+
+				// pw.printlnIdent("private static class ReadInput {");
+				// pw.add();
+
+        // pw.printlnIdent("public static String readString () {");
+				// pw.add();
+        // pw.printlnIdent("Scanner scanner = new Scanner(System.in);");
+        // pw.printlnIdent("return scanner.nextLine();");
+				// pw.sub();
+        // pw.printlnIdent("}");
+
+        // pw.printlnIdent("public static int readInt () {");
+				// pw.add();
+        // pw.printlnIdent("Scanner scanner = new Scanner(System.in);");
+        // pw.printlnIdent("return scanner.nextInt();");
+				// pw.sub();
+        // pw.printlnIdent("}");
+
+				// pw.sub();
+				// pw.printlnIdent("}");
+
         classList.stream().forEach((currentClass) -> {
             currentClass.genJava(pw);
         });

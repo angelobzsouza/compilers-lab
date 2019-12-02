@@ -14,11 +14,23 @@ public class PrintStat extends Statement {
 	}
 
 	public void genJava(PW pw){
-		pw.printIdent("System.out.println(");
+		if (exprList.size() > 1) {
+			pw.printIdent("System.out.println(");
+		}
+		else {
+			pw.printIdent("System.out.println(\"");
+		}
+		
 		exprList.stream().forEach((expr) -> {
 			expr.genJava(pw);
 		});
-		pw.println(");");
+		
+		if (exprList.size() > 1) {
+			pw.println(");");
+		}
+		else {
+			pw.println("\");");
+		}
 	};
 
 	private ArrayList<Expr> exprList;

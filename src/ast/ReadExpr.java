@@ -15,7 +15,12 @@ public class ReadExpr extends Factor{
 	}
 
 	public void genJava(PW pw){
-		//scanner??
+		if (readType == Type.intType) {
+			pw.print("new Scanner (System.in).nextInt()");
+		}
+		else {
+			pw.print("new Scanner (System.in).nextLine()");
+		}
 	};
 	
 	private Type readType;

@@ -15,7 +15,9 @@ public class ObjectCreation extends Factor {
 		return type;
 	}
 
-	public void genJava(PW pw){};
+	public void genJava(PW pw){
+		pw.print(" new " + type.getClassName() + "()");
+	};
 
-	private Type type;
+	private TypeCianetoClass type;
 }

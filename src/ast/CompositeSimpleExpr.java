@@ -19,7 +19,7 @@ public class CompositeSimpleExpr extends SimpleExpr {
 		Type rightType = right.getType();
 		Type leftType = left.getType();
 	
-		if ( (rightType == Type.intType || rightType == Type.stringType) && (leftType == Type.intType || leftType == Type.stringType)) {
+		if ( (leftType == Type.intType || leftType == Type.stringType) && (rightType == Type.intType || rightType == Type.stringType)) {
 			return Type.stringType;
 		}
 		
@@ -27,7 +27,7 @@ public class CompositeSimpleExpr extends SimpleExpr {
 	}
 	public void genJava(PW pw){
 		left.genJava(pw);
-		pw.printIdent(op.toString());
+		pw.print(op.toString());
 		right.genJava(pw);
 	};
 	Expr right; 

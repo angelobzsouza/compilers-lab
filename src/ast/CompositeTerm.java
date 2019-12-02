@@ -32,7 +32,7 @@ public class CompositeTerm extends Term {
 	} 
 	public void genJava(PW pw){
 		left.genJava(pw);
-		pw.printIdent(op.toString());
+		pw.print(op.toString());
 		right.genJava(pw);
 	};
 	Expr right; 

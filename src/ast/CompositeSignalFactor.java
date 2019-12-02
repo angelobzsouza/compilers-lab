@@ -23,13 +23,14 @@ public class CompositeSignalFactor extends SignalFactor {
 		} 
 		return Type.undefinedType;
 	}
-	//null pointer
+
 	public void genJava(PW pw){
 		if (op != null){
-			pw.printIdent(op.toString());
+			pw.print(op.toString());
 		} 
 		right.genJava(pw);
 	};
+	
 	Token op;
 	Expr right;
 }

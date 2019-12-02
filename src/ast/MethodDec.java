@@ -37,20 +37,30 @@ public class MethodDec extends Member {
 
 	@Override
 	public void genJava (PW pw) {
+		// Qualifier
 		if (this.qualifier != null)
 		{
-			pw.printIdent(this.qualifier.getToken1()+" ");
-
+			pw.printIdent(this.qualifier.getToken1().toString()+" ");
 			if (this.qualifier.getToken2() != null) {
-				pw.print(this.qualifier.getToken2()+" ");
+				pw.print(this.qualifier.getToken2().toString()+" ");
 			}
 			if (this.qualifier.getToken3() != null) {
-				pw.print(this.qualifier.getToken3()+" ");
+				pw.print(this.qualifier.getToken3().toString()+" ");
 			}
 			if (this.returnType != null) {
 				this.returnType.genJava(pw);
 			}
 		}
+
+		// Type
+		if (returnType == null) {
+			pw.print("void ");
+		}
+		else {
+			pw.print(returnType.getCname()+" ");
+		}
+
+		// Params
 		pw.print(this.id+" (");
 
 		paramList.stream().forEach((param) -> {
@@ -59,6 +69,7 @@ public class MethodDec extends Member {
 		pw.printlnIdent(") {");
 		pw.add();
 		
+		// Statements
 		statList.stream().forEach((stat) -> {
 			if (stat != null)
 				stat.genJava(pw);
